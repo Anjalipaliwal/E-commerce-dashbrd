@@ -25,7 +25,7 @@ export class DashboardECommerceComponent implements OnInit {
   ngOnInit(): void {
     this.getDashboardData();
   }
-
+  // get data from api
   getDashboardData() {
     this.http.get('https://fakestoreapi.in/api/products')
       .pipe(
@@ -44,6 +44,7 @@ export class DashboardECommerceComponent implements OnInit {
         }
       );
   }
+  // filter the products based on the search input
   filterProducts() {
     if (this.productFilter.length > 0) {
       this.productData = this.productData.filter((product) =>
@@ -64,6 +65,7 @@ export class DashboardECommerceComponent implements OnInit {
     } else if (order === 'desc') {
       this.productData.sort((a, b) => b.price - a.price);  // High to Low
     }
+    // update the product data
     this.productData = [...this.productData]; 
   }
 

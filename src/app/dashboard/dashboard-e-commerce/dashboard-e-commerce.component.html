@@ -1,6 +1,7 @@
     
 <div class="container py-3">
     <h4>E-Commerce Dashboard</h4>
+    <!-- filter for cards data -->
     <input type="text" class="form-control my-2" placeholder="Search By Title, Category or Brand" [(ngModel)]="productFilter"    (ngModelChange)="filterProducts()">
     <!-- Sorting Dropdown -->
   <div class="mb-3">
@@ -9,6 +10,7 @@
       <option value="desc">Price: High to Low</option>
     </select>
   </div>
+  <!-- virtual scroll for cards data -->
   <cdk-virtual-scroll-viewport itemSize="200" class="cdk-virtual-scroll-viewport" > 
     <div class="row">
     
@@ -30,7 +32,7 @@
     </div>
   
 
- <!-- Modal -->
+ <!-- Modal  for details of product-->
  <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
