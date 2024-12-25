@@ -1,0 +1,52 @@
+    
+<div class="container py-3">
+    <h4>E-Commerce Dashboard</h4>
+    <input type="text" class="form-control my-2" placeholder="Search By Title, Category or Brand" [(ngModel)]="productFilter"    (ngModelChange)="filterProducts()">
+    <!-- Sorting Dropdown -->
+  <div class="mb-3">
+    <select class="form-select" [(ngModel)]="sortOrder" (ngModelChange)="onSortChange(sortOrder)">
+      <option value="asc">Price: Low to High</option>
+      <option value="desc">Price: High to Low</option>
+    </select>
+  </div>
+  <cdk-virtual-scroll-viewport itemSize="200" class="cdk-virtual-scroll-viewport" > 
+    <div class="row">
+    
+            <div class="col-4 col-sm-6 col-md-4 col-lg-3 p-1" *cdkVirtualFor="let item of productData">
+                <div class="card" (click)="openModal(item)">
+                <!-- Image inside card -->
+                <img src="{{item.image}}" alt="Avatar" class="card-img-top" style="width: 100%">
+                
+                <div class="card-body">
+                  <p class="card-title font-weight-600">{{ item.title }}</p>
+                  <p class="card-text"> <b class="txt-heading">Price : </b>{{ item.price }}</p>
+                  <p class="card-text"> <b class="txt-heading">Category : </b>{{ item.category }}</p>
+                  <p class="card-text"> <b class="txt-heading">Brand : </b>{{ item.brand }}</p>
+                </div>
+                </div>
+              </div>
+        </div>
+    </cdk-virtual-scroll-viewport>
+    </div>
+  
+
+ <!-- Modal -->
+ <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="productModalLabel">{{ selectedProduct?.title }}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <img [src]="selectedProduct?.image" alt="Product Image" class="img-fluid mb-3" />
+          <p><strong>Category:</strong> {{ selectedProduct?.category }}</p>
+          <p><strong>Price:</strong> \${{ selectedProduct?.price }}</p>
+          <p><strong>Description:</strong> {{ selectedProduct?.description || 'No description available.' }}</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
